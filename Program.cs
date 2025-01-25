@@ -1,6 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+using PostManagementSystem.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("con"))); ;
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
