@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Post>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create" asp-controller="Post">Create New</a>
+</p>
+<table class="table table-bordered m-3">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Image</th>
+            <th>Description</th>
+            <th>PublishDate</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.User.UserName
+                  @*   @Html.DisplayNameFor(model => model.User.UserName) *@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.urlImage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PublishDate)
+                </td>
+                <td>
+                    <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.ID">Delete</a>|
+                    <a class="btn btn-dark" asp-action="Details" asp-route-id="@item.ID">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
