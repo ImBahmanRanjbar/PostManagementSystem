@@ -1,8 +1,31 @@
-﻿@{
+﻿@model IEnumerable<User>
+@{
     ViewData["Title"] = "Home Page";
 }
+<a asp-action="CreateUser" asp-controller="Home" class="btn btn-primary">Create User</a>
+<table class="table table-bordered m-3">
+    <tr>
+        <th>Name</th>
+        <th>UserName</th>
+        <th>Email</th>
+        <th>JoinTime</th>
+        <th>     </th>
+    </tr>
+    @foreach (var myuser in Model)
+    {
+        <tr>
+            <td>@myuser.Name</td>
+            <td>@myuser.UserName</td>
+            <td>@myuser.Email</td>
+            <td>@myuser.JoinTime</td>
+            <td>
+                <a asp-action="EditUser" asp-controller="Home" class="btn btn-success" asp-route-id="@myuser.ID">Edit</a>
+                <a asp-action="DeleteUser" asp-controller="Home" class="btn btn-danger" asp-route-id="@myuser.ID">Delete</a>
+                <a asp-action="DetailsUser" asp-controller="Home" class="btn btn-dark" asp-route-id="@myuser.ID">Detail</a>
+                <a asp-action="Create" asp-controller="Post" class="btn btn-outline-info" asp-route-id="@myuser.ID">Create Post</a>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+            </td>
+
+        </tr>
+    }
+</table>
